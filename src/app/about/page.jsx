@@ -3,6 +3,7 @@ const About = () => {
     <div>
       <h1>About page</h1>
       <p>salm</p>
+      <p>salomekka</p>
     </div>
   )
 }
