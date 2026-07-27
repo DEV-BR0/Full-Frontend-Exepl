@@ -1,9 +1,9 @@
 function Navbar() {
   return (
-    <div className="">
-      <div className="fixed">salom</div>
+    <div className="w-[100px]">
+      <div className="fixed"></div>
     </div>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
