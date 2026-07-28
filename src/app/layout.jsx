@@ -55,7 +55,7 @@ export const metadata = {
   openGraph: {
     title: 'Fiscal Atelier CRM',
     description: 'Manage your dashboard, transactions, and users with a modern CRM system.',
-    url: 'https://your-domain.com',
+    url: 'https://full-frontend-exepl.vercel.app/',
     siteName: 'Fiscal Atelier CRM',
     images: [
       {
