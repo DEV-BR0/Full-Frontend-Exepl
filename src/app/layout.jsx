@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner'
 import LayoutWrapper from './LayoutWrapper'
 import './globals.css'
 
@@ -83,6 +84,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <Toaster position='top-right'/>
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>

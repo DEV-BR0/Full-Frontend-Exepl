@@ -2,33 +2,43 @@
 import { Wallet } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 export default function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  async function HandleSubmit(e) {
+  async function submit(e) {
     e.preventDefault()
-
     try {
+      if (!name || !email || !password) {
+        toast.message('Please fill in all fields.')
+      }
+
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name,
-          email,
-          password,
+          name: name.trim(),
+          email: email.trim(),
+          password: password.trim(),
         }),
       })
 
-      if (response.ok) {
-        console.log('Success')
+      if (response.status == 200 || response.ok) {
+        toast.success('Registration successful!')
       } else {
-        console.log('Error')
+        toast.error(`Internal Server Error Number ${response.status}`)
       }
+
+      setEmail('')
+      setName('')
+      setPassword('')
+      const data = await response.json()
+      localStorage.setItem('token', JSON.stringify(data.token))
     } catch (error) {
       console.log(error)
     }
@@ -41,20 +51,20 @@ export default function SignUp() {
           Sign Up
         </div>
         <form
-          onSubmit={HandleSubmit}
+          onSubmit={submit}
           className="flex flex-col justify-center items-center gap-[20px] w-full"
         >
           <input
             value={name}
-            type="text"
-            onChange={(e) => setName(e.target.value)}
+            type="name"
+            onChange={(e) => setName(e.target.value.trim())}
             placeholder="Enter Your Name"
             className="bg-[#00000013] transition duration-300 p-[10px] rounded-xl outline-none shadow-lg shadow-green-500/50 focus:shadow-inner shadow-green-500 ease-in-out w-full "
           />
           <input
             value={email}
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.trim())}
             placeholder="Enter Email"
             className="bg-[#00000013] p-[10px] rounded-xl outline-none shadow-lg shadow-green-500/50 focus:shadow-inner shadow-green-500 transition-all duration-300 ease-in-out w-full"
           />
@@ -62,7 +72,7 @@ export default function SignUp() {
             value={password}
             type="password"
             placeholder="Enter Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value.trim())}
             className="bg-[#00000013] p-[10px] rounded-xl outline-none shadow-lg shadow-green-500/50 focus:shadow-inner shadow-green-500 transition-all duration-300 ease-in-out w-full"
           />
 
