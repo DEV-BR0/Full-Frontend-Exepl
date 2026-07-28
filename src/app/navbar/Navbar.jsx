@@ -1,7 +1,11 @@
-import { LayoutDashboard, Wallet } from 'lucide-react'
+'use client'
+
+import { LayoutDashboard, Receipt, Wallet } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 
 function Navbar() {
+  const [active, setActive] = useState('dashboard')
   return (
     <div className="w-[140px] h-full bg-[#F8FAFC]">
       <div className="fixed p-[30px] h-full flex flex-col gap-[20px]">
@@ -16,17 +20,63 @@ function Navbar() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-[20px]">
+        <div className="flex flex-col gap-[30px]">
           <Link
             href="/"
-            className={(activ) =>
-              activ
-                ? `flex gap-[10px] hover:text-[#006E2F] `
-                : `flex gap-[10px] hover:text-[#006E2F] before:content-['|']`
+            onClick={() => {
+              setActive('dashboard')
+            }}
+            className={
+              active == 'dashboard'
+                ? `flex gap-[10px] hover:text-[#006E2F] rounded-2xl text-[#006E2F] shadow-[inset_0_4px_6px_rgba(0,0,0,0.2)] p-[20px] transition-all duration-400 relative overflow-hidden`
+                : `flex gap-[10px] hover:text-[#006E2F] transition duration-400 p-[20px] relative overflow-hidden rounded-2xl`
             }
           >
+            {active == 'dashboard' ? (
+              <div className="text-[40px]  left-[-5px] top-[-5px] absolute overflow-hidden bg-[#006E2F] w-[10px] h-full"></div>
+            ) : (
+              ''
+            )}
             <LayoutDashboard />
             Dashboard
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => {
+              setActive('about')
+            }}
+            className={
+              active == 'about'
+                ? `flex gap-[10px] hover:text-[#006E2F] rounded-2xl text-[#006E2F] shadow-[inset_0_4px_6px_rgba(0,0,0,0.2)] p-[20px] transition-all duration-400 relative overflow-hidden`
+                : `flex gap-[10px] hover:text-[#006E2F] transition duration-400 p-[20px] relative overflow-hidden rounded-2xl`
+            }
+          >
+            {active == 'about' ? (
+              <div className="text-[40px]  left-[-5px] top-[-5px] absolute overflow-hidden bg-[#006E2F] w-[10px] h-full over"></div>
+            ) : (
+              ''
+            )}
+            <Receipt />
+            Transactions
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => {
+              setActive('about')
+            }}
+            className={
+              active == 'about'
+                ? `flex gap-[10px] hover:text-[#006E2F] rounded-2xl text-[#006E2F] shadow-[inset_0_4px_6px_rgba(0,0,0,0.2)] p-[20px] transition-all duration-400 relative overflow-hidden`
+                : `flex gap-[10px] hover:text-[#006E2F] transition duration-400 p-[20px] relative overflow-hidden rounded-2xl`
+            }
+          >
+            {active == 'about' ? (
+              <div className="text-[40px]  left-[-5px] top-[-5px] absolute overflow-hidden bg-[#006E2F] w-[10px] h-full over"></div>
+            ) : (
+              ''
+            )}
+            <Receipt />
+            Transactions
           </Link>
         </div>
       </div>
