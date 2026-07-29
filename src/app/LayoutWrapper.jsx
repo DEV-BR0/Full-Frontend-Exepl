@@ -14,9 +14,9 @@ export default function LayoutWrapper({ children }) {
   }
 
   return (
-    <div className="flex">
+    <div className="flex w-full gap-[60px]">
       <Navbar />
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <Hed />
         {children}
       </div>
