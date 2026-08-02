@@ -16,29 +16,31 @@ export default function SignUp() {
         toast.message('Please fill in all fields.')
       }
 
-      const response = await fetch('/api/register', {
+      const res = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          password: password.trim(),
+          id: Date.now(),
+          name: name,
+          email: email,
         }),
       })
 
-      if (response.status == 200 || response.ok) {
+      const token = await res.json()
+
+      localStorage.setItem('token', token)
+
+      if (res.status == 200 || res.ok) {
         toast.success('Registration successful!')
       } else {
-        toast.error(`Internal Server Error Number ${response.status}`)
+        toast.error(`Internal Server Error Number ${res.status}`)
       }
 
       setEmail('')
       setName('')
       setPassword('')
-      const data = await response.json()
-      localStorage.setItem('token', JSON.stringify(data.token))
     } catch (error) {
       console.log(error)
     }

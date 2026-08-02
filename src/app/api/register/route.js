@@ -1,25 +1,31 @@
 import jwt from 'jsonwebtoken'
 import { NextResponse } from 'next/server'
-export async function POST(req) {
-  const body = await req.json()
-
-  const { name, email, password } = body
+export async function POST(request) {
+  const data = await request.json()
 
   const token = jwt.sign(
     {
-      id: Date.now(),
-      name: name,
-      email: email,
+      id: data.id,
+      name: data.name,
+      email: data.email,
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '7d',
+      expiresIn: '30d',
     }
   )
 
-  return NextResponse.json({
+  const response = NextResponse.json({
     success: true,
-    message: 'tayyor',
-    token,
   })
+
+  response.cookies.set('token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 60 * 60 * 24 * 30,
+    path: '/',
+  })
+
+  return response
 }

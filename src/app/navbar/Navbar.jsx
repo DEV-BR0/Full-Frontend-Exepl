@@ -7,8 +7,8 @@ import { useState } from 'react'
 function Navbar() {
   const [active, setActive] = useState('dashboard')
   return (
-    <div className="w-[280px] h-full bg-[#F8FAFC]">
-      <div className="fixed p-[30px] h-full flex flex-col gap-[40px] w-[280px] shadow-[inset_0_-4px_6px_rgba(0,0,0,0.2)]">
+    <div className="w-[300px] h-full bg-[#F8FAFC]">
+      <div className="fixed p-[30px] h-full flex flex-col gap-[40px] w-[300px] shadow-[inset_0_-4px_6px_rgba(0,0,0,0.2)]">
         <div className="flex items-center gap-[15px]">
           <div className="p-[10px] rounded-xl bg-[#006E2F] ">
             <Wallet color="white" />

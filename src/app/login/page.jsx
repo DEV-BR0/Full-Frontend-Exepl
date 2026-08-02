@@ -29,7 +29,7 @@ export default function LoginPage() {
         </form>
         <div className="flex text-[17px]">
           <p>
-            Don't have an account? <Link href={'/register'} className="text-[#166534] font-semibold ">Sign up</Link>
+            Don`t have an account? <Link href={'/register'} className="text-[#166534] font-semibold ">Sign up</Link>
           </p>
         </div>
       </div>

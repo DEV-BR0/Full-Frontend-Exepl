@@ -1,4 +1,5 @@
-import { Search } from 'lucide-react';
+import { Search } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Hed() {
   return (
@@ -11,7 +12,13 @@ export default function Hed() {
           placeholder="Search transactions, assets, or users..."
         />
       </div>
-      <div className="fle"></div>
+      <div className="flex pr-[20px] items-center">
+        <div className="flex flex-col">
+          <p className="text-[10px] font-bold ">Alexander Vance</p>
+          <p className="text-[10px] text-[#3D4A3D]">Admin Access</p>
+        </div>
+        <Image src="/Image/users.jpg" alt="photo" width={40} height={40} />
+      </div>
     </div>
   )
 }
